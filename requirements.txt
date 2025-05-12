@@ -6,3 +6,5 @@ SpeechRecognition
 pyaudio
 together
 pyyaml
+eSpeak 
+eSpeak-ng
