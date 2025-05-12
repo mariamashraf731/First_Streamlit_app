@@ -111,7 +111,7 @@ if 'show_text_input' not in st.session_state:
 # TTS function with interrupt support
 def speak(text, lang='en'):
     def _speak():
-        engine = pyttsx3.init()
+        engine = pyttsx3.init('dummy')
         voices = engine.getProperty('voices')
         for voice in voices:
             if (lang == 'ar' and 'Arabic' in voice.name) or (lang == 'en' and 'English' in voice.name):
