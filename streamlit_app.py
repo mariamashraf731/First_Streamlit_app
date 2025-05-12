@@ -13,7 +13,7 @@ from together import Together
 import threading
 
 class VisionDescriber:
-    def __init__(self, config_path="Configs/config.yml"):
+    def __init__(self, config_path="config.yml"):
         self.config = self._load_config(config_path)
         api_key = self.config["together_api_key"]
         self.client = Together(api_key=api_key)
