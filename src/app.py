@@ -75,14 +75,14 @@ preset = st.sidebar.radio("Parameter Preset", ["Custom", "Default", "Creative", 
 
 if preset == "Custom":
     temperature = st.sidebar.slider("Temperature", 0.0, 1.0, 0.7, 0.01)
-    top_p = st.sidebar.slider("Top-p (Nucleus Sampling)", 0.0, 1.0, 1.0, 0.01)
+    top_p = st.sidebar.slider("Top-p (Nucleus Sampling)", 0.0, 1.0, 0.99, 0.01)
 else:
     if preset == "Default":
         temperature = 0.7
-        top_p = 1.0
+        top_p = 0.99
     elif preset == "Creative":
         temperature = 0.9
-        top_p = 1.0
+        top_p = 0.99
     elif preset == "Strict":
         temperature = 0.2
         top_p = 0.5
@@ -113,7 +113,7 @@ if 'last_token_usage' in st.session_state:
 # Display chat history
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
-        st.markdown(f"<span style='color:black; font-weight:bold'>{message['content']}</span>", unsafe_allow_html=True)
+        st.markdown(f"<div style='color:black; font-weight:bold'>{message['content'].replace('\n', '<br>')}</div>", unsafe_allow_html=True)
 
 # Check for user input or Surprise Me
 prompt = st.chat_input("Type your message...")
@@ -132,9 +132,14 @@ if prompt:
     st.session_state.messages.append({"role": "user", "content": prompt_with_tone})
 
     with st.chat_message("user"):
-        st.markdown(f"<span style='color:black; font-weight:bold'>{prompt_with_tone}</span>", unsafe_allow_html=True)
+        st.markdown(f"<div style='color:black; font-weight:bold'>{prompt_with_tone.replace('\n', '<br>')}</div>", unsafe_allow_html=True)
 
     with st.chat_message("assistant"):
+        # if "deepseek" in model.lower():
+        #     with st.expander("🧠 Thinking process..."):
+        #         message_placeholder = st.empty()
+        #         message_placeholder.markdown("Generating response...")
+        # else:
         message_placeholder = st.empty()
         message_placeholder.markdown("Thinking...")
 
