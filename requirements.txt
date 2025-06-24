@@ -1,8 +1,2 @@
-streamlit
-pillow
-requests
-pyttsx3
-SpeechRecognition
-pyaudio
-together
-pyyaml
+streamlit==1.46.0
+together==1.5.17
