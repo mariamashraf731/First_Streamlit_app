@@ -119,6 +119,10 @@ for message in st.session_state.messages:
             unsafe_allow_html=True
         )
 
+# for message in st.session_state.messages:
+#     with st.chat_message(message["role"]):
+#         st.write(message["content"])
+
 # Check for user input or Surprise Me
 prompt = st.chat_input("Type your message...")
 
@@ -136,11 +140,15 @@ if prompt:
     st.session_state.messages.append({"role": "user", "content": prompt_with_tone})
 
     formatted_prompt = prompt_with_tone.replace("\n", "<br>")
+    
     with st.chat_message("user"):
         st.markdown(
             f"<div style='color:black; font-weight:bold'>{formatted_prompt}</div>",
             unsafe_allow_html=True
         )
+
+    # with st.chat_message("user"):
+    #     st.write(prompt_with_tone)
 
     with st.chat_message("assistant"):
         message_placeholder = st.empty()
