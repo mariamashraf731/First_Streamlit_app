@@ -3,12 +3,13 @@ import streamlit as st
 from together import Together
 import random
 
+together_api_key = "48dfc1d32e9f36721e7a290863019522cd352e0e9cc671d16447ac408988bd15"
+client = Together(api_key=together_api_key)
+
 # ----------------- Step 2: Page Configuration -----------------
 # TODO: Set Streamlit page title, icon, and layout using st.set_page_config
 # Hint: search "streamlit set_page_config example"
 # You can safely set your API key here
-together_api_key = "48dfc1d32e9f36721e7a290863019522cd352e0e9cc671d16447ac408988bd15"
-client = Together(api_key=together_api_key)
 
 st.set_page_config(page_title="Together AI Chatbot", page_icon="🤖", layout="centered")
 
@@ -37,12 +38,16 @@ st.sidebar.header("🛠️ Settings")
 # --------- Model Selection ---------
 # TODO: Add dropdown to choose the model using st.sidebar.selectbox
 # Hint: Search "streamlit st.sidebar selectbox example"
-
+# These are the available models: [
+#         "meta-llama/Llama-3.3-70B-Instruct-Turbo-Free",
+#         "lgai/exaone-3-5-32b-instruct",
+#         "deepseek-ai/DeepSeek-R1-Distill-Llama-70B-free"
+#     ]
 
 # --------- Chat Style Selection ---------
 # TODO: Add radio buttons to choose chat style using st.sidebar.radio
 # Hint: Search "streamlit sidebar radio button"
-
+# These are the available styles: ["Default", "Formal", "Friendly", "Humorous", "Concise"]
 
 # ----------------- Step 5: Chat History Initialization -----------------
 # TODO: Use st.session_state to store message history

@@ -112,8 +112,12 @@ if 'last_token_usage' in st.session_state:
 
 # Display chat history
 for message in st.session_state.messages:
+    formatted_content = message["content"].replace("\n", "<br>")
     with st.chat_message(message["role"]):
-        st.markdown(f"<div style='color:black; font-weight:bold'>{message['content'].replace('\n', '<br>')}</div>", unsafe_allow_html=True)
+        st.markdown(
+            f"<div style='color:black; font-weight:bold'>{formatted_content}</div>",
+            unsafe_allow_html=True
+        )
 
 # Check for user input or Surprise Me
 prompt = st.chat_input("Type your message...")
@@ -131,15 +135,14 @@ if prompt:
 
     st.session_state.messages.append({"role": "user", "content": prompt_with_tone})
 
+    formatted_prompt = prompt_with_tone.replace("\n", "<br>")
     with st.chat_message("user"):
-        st.markdown(f"<div style='color:black; font-weight:bold'>{prompt_with_tone.replace('\n', '<br>')}</div>", unsafe_allow_html=True)
+        st.markdown(
+            f"<div style='color:black; font-weight:bold'>{formatted_prompt}</div>",
+            unsafe_allow_html=True
+        )
 
     with st.chat_message("assistant"):
-        # if "deepseek" in model.lower():
-        #     with st.expander("🧠 Thinking process..."):
-        #         message_placeholder = st.empty()
-        #         message_placeholder.markdown("Generating response...")
-        # else:
         message_placeholder = st.empty()
         message_placeholder.markdown("Thinking...")
 
@@ -174,7 +177,11 @@ if prompt:
     except Exception as e:
         assistant_message = f"⚠️ Error: {e}"
 
-    message_placeholder.markdown(f"<span style='color:black; font-weight:bold'>{assistant_message}</span>", unsafe_allow_html=True)
+    formatted_assistant_message = assistant_message.replace("\n", "<br>")
+    message_placeholder.markdown(
+        f"<div style='color:black; font-weight:bold'>{formatted_assistant_message}</div>",
+        unsafe_allow_html=True
+    )
     st.session_state.messages.append({"role": "assistant", "content": assistant_message})
 
 
