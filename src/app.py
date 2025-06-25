@@ -190,6 +190,9 @@ if prompt:
         f"<div style='color:black; font-weight:bold'>{formatted_assistant_message}</div>",
         unsafe_allow_html=True
     )
+    
+    # message_placeholder.text(assistant_message)
+
     st.session_state.messages.append({"role": "assistant", "content": assistant_message})
 
 
