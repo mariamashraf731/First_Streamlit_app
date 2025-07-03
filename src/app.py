@@ -2,9 +2,17 @@ import streamlit as st
 from together import Together
 import random
 
-# You can safely set your API key here
-together_api_key = "48dfc1d32e9f36721e7a290863019522cd352e0e9cc671d16447ac408988bd15"
+# Get the API key from Streamlit secrets
+try:
+    together_api_key = st.secrets["TOGETHER_API_KEY"]
+except KeyError:
+    st.error("TOGETHER_API_KEY not found. Please add it to your .streamlit/secrets.toml file.")
+    st.stop()
+
 client = Together(api_key=together_api_key)
+
+# st.title('Hello, Streamlit!')
+# st.write('This is a simple Streamlit app.')
 
 st.set_page_config(page_title="Together AI Chatbot", page_icon="🤖", layout="centered")
 

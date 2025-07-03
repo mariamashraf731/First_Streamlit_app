@@ -24,7 +24,7 @@ Follow these steps to set up and run the project locally.
 - Python 3.8 or higher
 - A Together AI API Key. You can get one from the [Together AI website](https://api.together.ai/).
 
-### 2. Clone the Repository
+### 2. Clone the Repository (if you haven't already)
 
 ```bash
 git clone <repository-url>
@@ -38,6 +38,10 @@ Install the packages:
 ```bash
 pip install -r requirements.txt
 ```
+Configure Your API Key. This app uses Streamlit's secrets management to keep your API key secure. In the root directory of the project, create a new folder named .streamlit. Inside the .streamlit folder, create a new file named secrets.toml. Open secrets.toml and add your Together AI API key in the following format:
+in .streamlit/secrets.toml put
+TOGETHER_API_KEY = "Your-API-Key-Here"
+
 
 Once you have installed the required packages, you can run the app by running the following command in your terminal:
 
